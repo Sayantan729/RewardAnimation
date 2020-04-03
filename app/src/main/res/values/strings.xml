@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">RewardAnimation</string>
     <string name="tap">Tap</string>
+    <string name="ok">OK</string>
 </resources>

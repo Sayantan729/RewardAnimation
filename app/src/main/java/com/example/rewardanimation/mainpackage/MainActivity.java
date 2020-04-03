@@ -1,7 +1,10 @@
 package com.example.rewardanimation.mainpackage;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.animation.Animator;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -11,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.rewardanimation.Dialogs.CongratsDialog;
 import com.example.rewardanimation.R;
 import com.example.rewardanimation.utilitypackage.ProgressAnimation;
 
@@ -34,6 +38,31 @@ public class MainActivity extends AppCompatActivity {
         textView.setText(progress+"/100");
         button=findViewById(R.id.tap);
         lottieAnimationView.setAnimation(R.raw.celebration);
+        lottieAnimationView.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animator) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                DialogFragment congrats=new CongratsDialog();
+                FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
+                congrats.show(fragmentTransaction,null);
+
+
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animator) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animator) {
+
+            }
+        });
         progressAnimation=new ProgressAnimation(progressBar,lottieAnimationView,textView);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 {
                     progress=0;
                     progressBar.setProgress(0);
+
                 }
 
             }
