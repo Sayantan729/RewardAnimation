@@ -64,21 +64,34 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         progressAnimation=new ProgressAnimation(progressBar,lottieAnimationView,textView);
+        progressAnimation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                if(progressBar.getProgress()==100)
+                    lottieAnimationView.playAnimation();
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
 
                 progressAnimation.setProgress(progress,(progress+20));
                 progressAnimation.setDuration(500);
                 progressBar.startAnimation(progressAnimation);
                 progress+=20;
-                if(progress==100)
-                {
-                    progress=0;
-                    progressBar.setProgress(0);
-
-                }
-
+                progress=progress%100;
             }
         });
 

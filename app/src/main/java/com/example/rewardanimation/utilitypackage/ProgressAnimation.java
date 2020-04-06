@@ -33,7 +33,6 @@ public class ProgressAnimation extends Animation {
         float value = from + (to - from) * interpolatedTime;
         progressBar.setProgress((int) value);
         textView.setText((int) value+"/100");
-        if(value==100)
-            lottieAnimationView.playAnimation();
+
     }
 }
